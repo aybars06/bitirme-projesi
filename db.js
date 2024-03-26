@@ -4,6 +4,8 @@ const conn = () => {
   mongoose
     .connect(process.env.DB_URI, {
       dbName: "bitirme_projesi",
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     })
     .then(() => {
       console.log("connected to mongodb successfuly!");
