@@ -4,7 +4,8 @@ import bcrypt from "bcrypt";
 const createUser = async (req, res) => {
     try {
         const user = req.body;
-        const existingUser = await user.findOne({ username: user.username });
+        console.log(user)
+        const existingUser = await User.findOne({ username: user.username });
         if (existingUser) {
             return res.status(475).json({
                 msg: "Kullanıcı adı alındı.",

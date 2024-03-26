@@ -4,14 +4,12 @@ const createCategory = async (req, res) => {
     try {
         const categoryInfo = req.body
 
-        const category = Category.create(categoryInfo)
+        const category =await Category.create(categoryInfo)
 
         res.status(201).json({
             status: "Success",
-            category: categoryInfo.categoriesName
+            category
         })
-
-
     } catch (error) {
         console.error(error);
         return res.status(500).json({ msg: "Sunucu hatası." });
