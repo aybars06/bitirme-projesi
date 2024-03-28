@@ -30,20 +30,17 @@ const createPost = async (req, res) => {
 
 const getPost = async (req, res) => {
     try {
-        const categoryId = req.body // Kategori bilgisini req.params üzerinden al
-
-        // Kategoriye göre gönderileri veritabanından çek
-        const posts = await Post.find({ category: categoryId });
+        // Tüm gönderileri veritabanından çek
+        const posts = await Disease.find();
 
         if (posts.length > 0) {
-            return res.status(200).json({
-                status: "Success",
+            return res.status(200).render("posts",{
                 posts
-            });
+            })
         } else {
             return res.status(404).json({
                 status: "fail",
-                msg: "Kategoriye ait gönderi bulunamadı."
+                msg: "Hiç gönderi bulunamadı."
             });
         }
 
