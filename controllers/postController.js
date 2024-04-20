@@ -31,23 +31,38 @@ const createPost = async (req, res) => {
 const getPost = async (req, res) => {
     try {
         // Tüm gönderileri veritabanından çek
-        const posts = await Disease.find();
+        const posts = await Post.find();
 
         if (posts.length > 0) {
-            return res.status(200).render("posts",{
-                posts
-            })
+            // index.ejs dosyasını render ederken posts değişkenini geçir
+            res.render("posts", {     
+            link:'posts',
+            posts });
+             
         } else {
             return res.status(404).json({
                 status: "fail",
                 msg: "Hiç gönderi bulunamadı."
             });
         }
-
     } catch (error) {
         console.error(error);
         return res.status(500).json({ msg: "Sunucu hatası." });
     }
 };
 
-export { createPost, getPost}
+const getApost = async(req,res) => {
+    try {
+        // Tüm gönderileri veritabanından çek
+        const post = await Post.findById({_id: req.params.id});
+            res.status(200).render('posts', { 
+            post,
+            link:'posts',
+        })
+            } catch (error) {
+        console.error(error);
+        return res.status(500).json({ msg: "Sunucu hatası." });
+    }
+};
+
+export { createPost, getPost, getApost}

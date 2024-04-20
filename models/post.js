@@ -7,10 +7,7 @@ const post = new Schema({
         type: String,
         required: true
     },
-    userID: {
-        type: String,
-        required: true
-    },
+
     postName: {
         type: String,
         required: true,
@@ -21,9 +18,17 @@ const post = new Schema({
         required: true,
         trim: true
     },
-    hitCount:{
+    like:{
         type:Number,
         default:0
+    },
+    dislike:{
+        type:Number,
+        default:0
+    },
+    comment:{
+        type: String,
+        trim: true
     },
     postDate:{
         type:Date,

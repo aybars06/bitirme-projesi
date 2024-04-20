@@ -7,7 +7,6 @@ const diseaseCreate = async (req, res) => {
 
         const isDisease = await Category.findOne({ _id: diseaseInfo.categoriesID })
 
-
         if (isDisease) {
             const disease = await Disease.create(diseaseInfo)
             res.status(201).json({
@@ -28,8 +27,7 @@ const getADisease = async (req, res) => {
         // Kategoriye göre gönderileri veritabanından çek
         const posts = await Disease.findOne({ categoriesID: categoryId.categoriesID });
         if (posts) {
-            return res.status(200).json({
-                status: "Success",
+            return res.status(200).render("disease",{
                 posts
             });
         } else {

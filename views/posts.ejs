@@ -1,3 +1,7 @@
+<%
+    const posts = locals.posts;
+%>
+
 <%- include("partials/_header") %>
    <body>
       <!--header section start -->
@@ -8,7 +12,7 @@
       </div>
       <!-- header section end -->
       <!-- barber section start -->
-      <%- include("partials/_post") %>
+      <%- include("partials/_post", { posts: posts }) %>
       <!-- barber section end -->
       <!-- footer section start -->
       <%- include("partials/_footer") %>

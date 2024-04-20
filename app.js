@@ -25,7 +25,7 @@ const port = process.env.PORT
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 
-app.use(pageRoute)
+app.use("/",pageRoute)
 app.use("/auth",authRoute)
 app.use("/user",userRoute)
 app.use("/category",categoryRoute)
