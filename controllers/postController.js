@@ -51,17 +51,17 @@ const getPost = async (req, res) => {
     }
 };
 
-const getApost = async(req,res) => {
+const getApost = async (req, res) => {
     try {
-        // Tüm gönderileri veritabanından çek
-        const post = await Post.findById({_id: req.params.id});
-            res.status(200).render('posts', { 
-            post,
-            link:'posts',
-        })
-            } catch (error) {
+        // Belirli bir gönderiyi veritabanından çek
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).json({ message: "Gönderi bulunamadı." });
+        }
+        res.render("posts", { posts: [post], link: "posts" });
+    } catch (error) {
         console.error(error);
-        return res.status(500).json({ msg: "Sunucu hatası." });
+        return res.status(500).json({ message: "Sunucu hatası." });
     }
 };
 

@@ -1,8 +1,10 @@
-import Post from "../models/post.js"
+import Post from "../models/post.js";
 const getIndexPage = async (req, res) => {
-res.render("index")
+  const posts = await Post.find();
+  res.render("index", {
+    posts,
+  });
 };
-
 const getAboutPage = (req, res) => (
     res.render("about")
 )

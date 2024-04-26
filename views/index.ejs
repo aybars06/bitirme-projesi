@@ -1,14 +1,41 @@
 <%- include("partials/_header") %>
    <body>
       <!--header section start -->
-      <%- include("partials/_menu") %>
+      <div class="header_section">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="logo"><a href="/"><img src="/images/logo.png"></a></div>
+                  <div class="menu_text">
+                     <ul>
+                        <div class="togle_3">
+                           <div class="shoping_bag"><a href="#"><img src="/images/user-icon.png"></a>
+                              <span class="padding_left_40"><a href="#"><img src="/images/search-icon.png"></a></span>
+                           </div>
+                           <div id="myNav" class="overlay">
+                              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                              <div class="overlay-content">
+                                 <a href="/">Home</a>
+                                 <a href="/about">About</a>
+                                 <a href="/posts">Blog</a>
+                                 <a href="contact.html">Testimonial</a>
+                                 <a href="contact.html">Contact</a>
+                              </div>
+                           </div>
+                           <span class="navbar-toggler-icon"></span>
+                           <span onclick="openNav()"><img src="/images/toogle-icon.png" class="toggle_menu"></span>
+                        </div>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
          <!-- banner section start -->
          <%- include("partials/_banner") %>
          <!-- banner section end -->
-      </div>
       <!-- header section end -->
       <!-- barber section start -->
-         <%- include("partials/_post") %>
+      <%- include("partials/_post") %>
       <!-- barber section end -->
       <!-- about section start -->
       <%- include("partials/_about") %>
@@ -44,7 +71,7 @@
                            <div class="carousel-item active">
                               <h1 class="testimonial_taital">Testimonial</h1>
                               <div class="testimonial_left">
-                                 <div class="client_img"><img src="images/client-img.png"></div>
+                                 <div class="client_img"><img src="/images/client-img.png"></div>
                               </div>
                               <div class="testimonial_right">
                                  <h1 class="jack_text">Hindona</h1>
@@ -55,7 +82,7 @@
                            <div class="carousel-item">
                               <h1 class="testimonial_taital">Testimonial</h1>
                               <div class="testimonial_left">
-                                 <div class="client_img"><img src="images/client-img.png"></div>
+                                 <div class="client_img"><img src="/images/client-img.png"></div>
                               </div>
                               <div class="testimonial_right">
                                  <h1 class="jack_text">Hindona</h1>
@@ -66,7 +93,7 @@
                            <div class="carousel-item">
                               <h1 class="testimonial_taital">Testimonial</h1>
                               <div class="testimonial_left">
-                                 <div class="client_img"><img src="images/client-img.png"></div>
+                                 <div class="client_img"><img src="/images/client-img.png"></div>
                               </div>
                               <div class="testimonial_right">
                                  <h1 class="jack_text">Hindona</h1>
