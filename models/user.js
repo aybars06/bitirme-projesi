@@ -18,11 +18,16 @@ const userModel = new Schema({
         type: String,
         required: true,
     },
+    
     k_tarihi: {
         type: Date,
         default: Date.now,
     }
-});
+},
+{
+    timestamps:true,
+}
+);
 
 userModel.pre('save', function (next) {
     const user = this;

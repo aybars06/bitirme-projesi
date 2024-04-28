@@ -8,5 +8,14 @@ const getIndexPage = async (req, res) => {
 const getAboutPage = (req, res) => (
     res.render("about")
 )
-
-export {getIndexPage, getAboutPage}
+const getRegisterPage = (req, res) => (
+  res.render("signup", {
+    link:"signup",
+  })
+)
+const getLoginPage = (req, res) => (
+  res.render("login", {
+    link:"login",
+  })
+)
+export {getIndexPage, getAboutPage, getRegisterPage, getLoginPage}

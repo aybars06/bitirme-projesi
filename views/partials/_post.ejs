@@ -10,7 +10,7 @@
              <div class="col-lg-6">
                 <div class="barber_bg_main">
                    <h1 class="barber_taital"><%= post.postName %></h1>
-                   <p class="barber_text"><%= post.description %></p>
+                   <p class="barber_text"><%= post.description.substring(0, 80)+"..." %></p>
                    <div class="blogr_main">
                       <div class="blogr_left">
                          <p class="post_text">Post By :  <%= post.author %></p>

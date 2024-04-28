@@ -1,0 +1,109 @@
+<%- include("partials/_header") %>
+   <body>
+      <!--header section start -->
+         <%- include("partials/_menu") %>
+         <!-- banner section start -->
+         <!-- banner section end -->
+      </div>
+   </div>
+
+      <!-- header section end -->
+      <!-- about section start -->
+      <div class="contact_section layout_padding">
+        <div class="container">
+           <div class="row">
+              <div class="col-lg-6">
+                 <div class="testimonial_taital_main">
+                    <div id="my_slider" class="carousel slide" data-ride="carousel">
+                       <div class="carousel-inner">
+                          <div class="carousel-item active">
+                             <h1 class="testimonial_taital">Hoşgeldiniz <%= user.name %> </h1>
+                             <div class="testimonial_left">
+                                <div class="client_img"><img src="/images/client-img.png"></div>
+                             </div>
+                             <div class="testimonial_right">
+                                <h1 class="jack_text">Hindona</h1>
+                                <p class="dummy_text">Businessman</p>
+                             </div>
+                             <p class="lorem_text">That it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now</p>
+                          </div>
+                          <div class="carousel-item">
+                             <h1 class="testimonial_taital">Testimonial</h1>
+                             <div class="testimonial_left">
+                                <div class="client_img"><img src="/images/client-img.png"></div>
+                             </div>
+                             <div class="testimonial_right">
+                                <h1 class="jack_text">Hindona</h1>
+                                <p class="dummy_text">Businessman</p>
+                             </div>
+                             <p class="lorem_text">That it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now</p>
+                          </div>
+                          <div class="carousel-item">
+                             <h1 class="testimonial_taital">Testimonial</h1>
+                             <div class="testimonial_left">
+                                <div class="client_img"><img src="/images/client-img.png"></div>
+                             </div>
+                             <div class="testimonial_right">
+                                <h1 class="jack_text">Hindona</h1>
+                                <p class="dummy_text">Businessman</p>
+                             </div>
+                             <p class="lorem_text">That it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now</p>
+                          </div>
+                       </div>
+                       <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+                       <i class="fa fa-angle-left"></i>
+                       </a>
+                       <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                       <i class="fa fa-angle-right"></i>
+                       </a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+      <!-- about section end -->
+      <!-- footer section start -->
+      <%- include("partials/_footer") %>
+      <!-- footer section end -->
+      <!-- copyright section start -->
+      <%- include("partials/_copyright") %>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <!-- javascript --> 
+      <script src="js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+              
+         $(".zoom").hover(function(){
+              
+         $(this).addClass('transition');
+         }, function(){
+              
+         $(this).removeClass('transition');
+         });
+         });
+      </script> 
+      <script>
+         function openNav() {
+         document.getElementById("myNav").style.width = "100%";
+         }
+         function closeNav() {
+         document.getElementById("myNav").style.width = "0%";
+         }
+      </script>  
+   </body>
+</html>
