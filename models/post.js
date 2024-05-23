@@ -36,8 +36,12 @@ const post = new Schema({
     },
     author:{
         type:String,
+        required: true,
         trim:true,
-        required:true
+    },
+    url:{
+        type: String,
+        required:true,
     }
 
 })

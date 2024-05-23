@@ -1,8 +1,10 @@
+import Category from "../models/category.js";
 import Post from "../models/post.js";
 const getIndexPage = async (req, res) => {
   const posts = await Post.find();
+  const category = await Category.find()
   res.render("index", {
-    posts,
+    posts,category
   });
 };
 const getAboutPage = (req, res) => (

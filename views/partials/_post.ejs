@@ -1,41 +1,104 @@
-
-<div class="barber_section layout_padding">
-    <div class="container">
-       <div class="braber_taital_main">
-          <div class="row">
-            
-            <%for (post of posts){ %>
-               
-         
-             <div class="col-lg-6">
-                <div class="barber_bg_main">
-                   <h1 class="barber_taital"><%= post.postName %></h1>
-                   <p class="barber_text"><%= post.description.substring(0, 80)+"..." %></p>
-                   <div class="blogr_main">
-                      <div class="blogr_left">
-                         <p class="post_text">Post By :  <%= post.author %></p>
-                      </div>
-                      <div class="blogr_right">
-                         <div class="comment_text">
+<div id="postContainer" class="row">
+    <% for (post of posts) { %>
+        <div class="col-lg-6">
+            <div class="barber_bg_main">
+                <h1 class="barber_taital">
+                    <%= post.postName %>
+                </h1>
+                <p class="barber_text">
+                    <%= post.description.substring(0, 80) + "..." %>
+                </p>
+                <div class="blogr_main">
+                    <div class="blogr_left">
+                        <p class="post_text">Post By : <%= post.author %>
+                        </p>
+                    </div>
+                    <div class="blogr_right">
+                        <div class="comment_text">
                             <ul>
-                               <li><a href="#"><%= post.like %><span class="padding_10"><i class="fa fa-thumbs-up"></i></span></a></li>
-                               <li><a href="#"><%= post.comment %><span class="padding_10"><i class="fa fa-comment"></i></span></a></li>
-                               <li><a href="#"><%= post.dislike %><span class="padding_10"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></a></li> 
+                                <li>
+                                    <a href="#">
+                                        <%= post.like %><span class="padding_10"><i class="fa fa-thumbs-up"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <%= post.comment %><span class="padding_10"><i class="fa fa-comment"></i></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <%= post.dislike %><span class="padding_10"><i class="fa fa-thumbs-down"
+                                                    aria-hidden="true"></i></span>
+                                    </a>
+                                </li>
                             </ul>
-                         </div>
-                      </div>
-                   </div>
+                        </div>
+                    </div>
                 </div>
-             </div>
+            </div>
+        </div>
 
-             <div class="col-lg-6">
-                <div class="fashion_img">
-                  <a href="/posts/<%= post._id %>"><img src="/images/img-1.png" class="fashion_img">
-                     <div class="read_bt"><a href="#"><%= new Date(post.postDate).toLocaleDateString('tr-TR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></a></div>
-                  </div>
-             </div>
-             <% } %>
-          </div>
-       </div>
-    </div>
- </div>
+        <div class="col-lg-6">
+            <div class="fashion_img">
+                <a href="/posts/<%= post._id %>">
+                    <img src="/images/img-1.png" class="fashion_img" alt="Post Image">
+                    <div class="read_bt">
+                        <a href="#">
+                            <%= new Date(post.postDate).toLocaleDateString('tr-TR', { weekday: 'long' , year: 'numeric'
+                                , month: 'long' , day: 'numeric' }) %>
+                        </a>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <% } %>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- barber section end -->
+<!-- footer section start -->
+    <!-- footer section end -->
+    <!-- copyright section start -->
+        <!-- copyright section end -->
+        <!-- Javascript files-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-3.0.0.min.js"></script>
+        <script src="js/plugin.js"></script>
+        <!-- sidebar -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+        <!-- javascript -->
+        <script src="js/owl.carousel.js"></script>
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".fancybox").fancybox({
+                    openEffect: "none",
+                    closeEffect: "none"
+                });
+
+                $(".zoom").hover(function () {
+
+                    $(this).addClass('transition');
+                }, function () {
+
+                    $(this).removeClass('transition');
+                });
+            });
+        </script>
+        <script>
+            function openNav() {
+                document.getElementById("myNav").style.width = "100%";
+            }
+            function closeNav() {
+                document.getElementById("myNav").style.width = "0%";
+            }
+        </script>
+        </body>
+
+        </html>

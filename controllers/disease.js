@@ -19,27 +19,22 @@ const diseaseCreate = async (req, res) => {
         return res.status(500).json({ msg: "Sunucu hatası." });
     }
 }
-const getADisease = async (req, res) => {
-
-    try {
-        const categoryId = req.body // Kategori bilgisini req.params üzerinden al
-
-        // Kategoriye göre gönderileri veritabanından çek
-        const posts = await Disease.findOne({ categoriesID: categoryId.categoriesID });
-        if (posts) {
-            return res.status(200).render("disease",{
-                posts
-            });
-        } else {
-            return res.status(404).json({
-                status: "fail",
-                msg: "Kategoriye ait gönderi bulunamadı."
-            });
-        }
-
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ msg: "Sunucu hatası." });
+const getAllDiseasesByCategory = async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      return res.status(404).json({ message: "Category not found." });
     }
-}
-export { diseaseCreate, getADisease }
+    const diseases = await Disease.find({ categoriesID: categoryId });
+    res.json(diseases.map(disease => ({
+      _id: disease._id,
+      diseaseName: disease.diseaseName
+    })));
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error." });
+  }
+};
+
+export { diseaseCreate, getAllDiseasesByCategory }

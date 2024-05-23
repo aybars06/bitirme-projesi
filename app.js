@@ -9,7 +9,9 @@ import diseaseRoute from "./routes/diseaseRoute.js"
 import authRoute from "./routes/authRoute.js"
 import userRoute from "./routes/userRoute.js"
 import pageRoute from "./routes/pageRoute.js"
-import postRoute from "./routes/postRoute.js"
+import postRoute from "./routes/postRoute.js" 
+import fileUpload from 'express-fileupload';
+import {v2 as cloudinary} from "cloudinary"
 const app = express();
 
  //Template Engine
@@ -21,13 +23,19 @@ const app = express();
  app.use(express.static("public"));
 
 dotenv.config()
+cloudinary.config({
+    cloud_name:process.env.CLOUD_NAME,
+    api_key:process.env.CLOUD_API_KEY,
+    api_secret:process.env.CLOUD_API_SECRET
+})
 conn()
 
 const port = process.env.PORT
 
+
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
-
+app.use(fileUpload({ useTempFiles: true }));
 app.use(session({
     secret: 'keyboard cat',
     resave:false,

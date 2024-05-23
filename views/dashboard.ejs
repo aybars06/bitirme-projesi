@@ -1,109 +1,398 @@
 <%- include("partials/_header") %>
+
    <body>
       <!--header section start -->
-         <%- include("partials/_menu") %>
+      <%- include("partials/_menu") %>
          <!-- banner section start -->
          <!-- banner section end -->
-      </div>
+         </div>
+         </div>
+
+         <!-- header section end -->
+         <!-- about section start -->
+         <div class="contact_section layout_padding">
+            <div style="width: 100%; display: flex; flex-direction: column;align-items: center;">
+               <div class="row" style="width: 90%;display: flex; flex-direction: row;justify-content: space-around;">
+                  <div class="col-lg-4"
+                     style=" border-radius: 15px; border-color: green; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
+                     <div class="contact_main">
+                        <h1 class="contact_taital">Hoşgeldiniz <%= user.name %>
+                        </h1>
+                        <form>
+                           <div class="form-group" style="text-align: left !important;">
+                              <label style="font-size: 25px;"> Adınız: <%= user.name %> </label>
+                           </div>
+                           <div class="form-group" style="text-align: left !important;">
+                              <label style="font-size: 25px;"> Kullanıcı Adı: <%= user.username %> </label>
+                           </div>
+                           <div class="form-group" style="text-align: left !important;">
+                              <label style="font-size: 25px;"> Kayıt Tarihi: <%= new
+                                    Date(user.k_tarihi).toLocaleDateString('tr-TR',{ year: 'numeric' , month: 'long' ,
+                                    day: 'numeric' }) %> </label>
+                        </form>
+                     </div>
+                     <div class="contact_bt"><a href="#" data-toggle="modal" data-target="#passwordChange"><span>Şifre
+                              Yenile</span></a></div>
+                  </div>
+               </div>
+               <div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                     <div class="modal-content">
+                        <div class="modal-body customer-box">
+                           <div class="tab-content">
+                              <div class="tab-pane active" id="Login">
+                                 <!-- Form -->
+                                 <!-- Modal Form -->
+                                 <form method="POST" action="/passwordChanged" class="form-horizontal"
+                                    onsubmit="setPass(event)" id="formhide">
+                                    <div class="form-group">
+                                       <div class="col-sm-12">
+                                          <label style="font-size: 20px; font-weight: bold;">Eski Şifrenizi
+                                             Girin...</label>
+                                          <input type="hidden" name="userID" id="userID" value="<%= user._id %>">
+                                          <input type="password" class="email-bt" name="currentPassword" id="oldpass">
+                                          <label style="font-size: 20px; font-weight: bold;">Yeni Şifrenizi
+                                             Girin...</label>
+                                          <input type="password" class="email-bt" name="newPassword" id="newpass">
+                                          <label style="font-size: 20px; font-weight: bold;">Yeni Şifrenizi Tekrar
+                                             Girin...</label>
+                                          <input type="password" class="email-bt" name="newPasswordRepeat"
+                                             id="newpassrepeat">
+                                       </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                       <button type="submit" class="btn btn-light btn-radius btn-brd grd1"
+                                          style="color:white; background-color: green;">
+                                          Şifre Değiştir
+                                       </button>
+                                       <button type="button" class="btn btn-light btn-radius btn-brd grd1"
+                                          style="background-color: red;color: white;" data-dismiss="modal"
+                                          aria-hidden="true">
+                                          İptal
+                                       </button>
+                                    </div>
+                                 </form>
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-6">
+                  <div class="testimonial_taital_main"
+                     style="background-color: rgb(15, 120, 6); border-radius:15px;box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;">
+                     <div id="my_slider" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                           <% posts.forEach((post, index)=> { %>
+                              <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                 <h1 class="testimonial_taital">Hoşgeldiniz <%= user.name %>
+                                 </h1>
+                                 <div class="testimonial_left">
+                                    <div class="client_img"><img src="/images/client-img.png"></div>
+                                 </div>
+                                 <div class="testimonial_right">
+                                    <h1 class="jack_text">
+                                       <%= user.name %>
+                                    </h1>
+                                    <p class="dummy_text">Üye</p>
+                                 </div>
+                                 <h1 class="barber_taital">
+                                    <%= post.postName %>
+                                 </h1>
+                                 <br>
+                                 <p class="barber_text">
+                                    <%= post.description.substring(0, 80) + "..." %>
+                                 </p>
+                              </div>
+                              <% }); %>
+                        </div>
+                        <a class="carousel-control-next" href="#my_slider" role="button" data-slide="prev"
+                           style="position: absolute;right: 0;">
+                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                        <div class="banner_taital_section">
+                           <div class="contact_bt"><a href="#" data-toggle="modal" data-target="#addCategory"><span>Post
+                                    Oluştur</span></a></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+         </div>
+         </div>
+         <!-- Modal -->
+         <div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+               <div class="modal-content">
+                  <div class="modal-body customer-box">
+                     <div class="tab-content">
+                        <div class="tab-pane active" id="Login">
+                           <!-- Form -->
+                         <!-- Form -->
+<form id="postForm" method="POST" action="/posts/createPost" class="form-horizontal" enctype="multipart/form-data">
+   <div class="form-group row">
+       <div class="col-sm-12">
+           <select class="form-control" name="category" id="hastalik" onchange="setSelect">
+               <option value="" disabled selected>Hastalık Kategorisi Seçiniz...</option>
+               <!-- Kategorileri dinamik olarak ekle -->
+               <% category.forEach(category=> { %>
+               <option value="<%= category.id %>"><%= category.categoriesName %></option>
+               <% }); %>
+           </select>
+       </div>
+       <div id="kategoriContainer"></div>
    </div>
 
-      <!-- header section end -->
-      <!-- about section start -->
-      <div class="contact_section layout_padding">
-        <div class="container">
-           <div class="row">
-              <div class="col-lg-6">
-                 <div class="testimonial_taital_main">
-                    <div id="my_slider" class="carousel slide" data-ride="carousel">
-                       <div class="carousel-inner">
-                          <div class="carousel-item active">
-                             <h1 class="testimonial_taital">Hoşgeldiniz <%= user.name %> </h1>
-                             <div class="testimonial_left">
-                                <div class="client_img"><img src="/images/client-img.png"></div>
-                             </div>
-                             <div class="testimonial_right">
-                                <h1 class="jack_text">Hindona</h1>
-                                <p class="dummy_text">Businessman</p>
-                             </div>
-                             <p class="lorem_text">That it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now</p>
-                          </div>
-                          <div class="carousel-item">
-                             <h1 class="testimonial_taital">Testimonial</h1>
-                             <div class="testimonial_left">
-                                <div class="client_img"><img src="/images/client-img.png"></div>
-                             </div>
-                             <div class="testimonial_right">
-                                <h1 class="jack_text">Hindona</h1>
-                                <p class="dummy_text">Businessman</p>
-                             </div>
-                             <p class="lorem_text">That it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now</p>
-                          </div>
-                          <div class="carousel-item">
-                             <h1 class="testimonial_taital">Testimonial</h1>
-                             <div class="testimonial_left">
-                                <div class="client_img"><img src="/images/client-img.png"></div>
-                             </div>
-                             <div class="testimonial_right">
-                                <h1 class="jack_text">Hindona</h1>
-                                <p class="dummy_text">Businessman</p>
-                             </div>
-                             <p class="lorem_text">That it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors nowthat it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now</p>
-                          </div>
-                       </div>
-                       <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                       <i class="fa fa-angle-left"></i>
-                       </a>
-                       <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                       <i class="fa fa-angle-right"></i>
-                       </a>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-      <!-- about section end -->
-      <!-- footer section start -->
-      <%- include("partials/_footer") %>
-      <!-- footer section end -->
-      <!-- copyright section start -->
-      <%- include("partials/_copyright") %>
-      <!-- copyright section end -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- javascript --> 
-      <script src="js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <script>
-         $(document).ready(function(){
-         $(".fancybox").fancybox({
-         openEffect: "none",
-         closeEffect: "none"
-         });
-              
-         $(".zoom").hover(function(){
-              
-         $(this).addClass('transition');
-         }, function(){
-              
-         $(this).removeClass('transition');
-         });
-         });
-      </script> 
-      <script>
-         function openNav() {
-         document.getElementById("myNav").style.width = "100%";
-         }
-         function closeNav() {
-         document.getElementById("myNav").style.width = "0%";
-         }
-      </script>  
+   <div class="form-group">
+       <div class="col-sm-12">
+           <input type="text" class="email-bt" placeholder="Post Adı" name="postName" id="baslik">
+           <input type="hidden" name="author" id="yazar" value="<%= user.username %>">
+       </div>
+   </div>
+   <div class="form-group">
+       <div class="col-sm-12">
+           <textarea class="massage-bt" placeholder="" rows="5" id="icerik" name="description"></textarea>
+       </div>
+   </div>
+   <div class="form-group">
+       <div class="col-sm-12">
+           <input type="file" name="image" class="form control file" id="fotograf">
+       </div>
+   </div>
+   <div class="col-sm-10">
+       <button type="submit" class="btn btn-light btn-radius btn-brd grd1" style="color:white; background-color: green;" onclick="sendData()">
+           Post Ekle
+       </button>
+       <button type="button" class="btn btn-light btn-radius btn-brd grd1" style="background-color: red;color: white;" data-dismiss="modal" aria-hidden="true">
+           İptal
+       </button>
+   </div>
+</form>
+
+               </div>
+            </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div>
+
+         <script>
+            async function setPass(event) {
+               event.preventDefault(); // Formun varsayılan submit davranışını durdurur
+
+               const userID = document.getElementById('userID').value;
+               const currentPassword = document.getElementById('oldpass').value;
+               const newPassword = document.getElementById('newpass').value;
+               const newPasswordRepeat = document.getElementById('newpassrepeat').value;
+
+               console.log("Current Password:", currentPassword);
+               console.log("New Password:", newPassword);
+               console.log("New Password Repeat:", newPasswordRepeat);
+
+               if (newPassword !== newPasswordRepeat) {
+                  alert("Yeni şifreler uyuşmuyor!");
+                  return;
+               }
+               if (!currentPassword || !newPassword) {
+                  alert("Boş Bırakılamaz...");
+                  return;
+               }
+               const data = {
+                  userID: userID,
+                  currentPassword: currentPassword,
+                  newPassword: newPassword
+               };
+
+               console.log("Data to be sent:", data);
+
+               try {
+                  const response = await fetch('/passwordChanged', {
+                     method: 'POST',
+                     headers: {
+                        'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify(data)
+                  });
+
+                  console.log("Response received:", response);
+
+                  const result = await response.json();
+                  console.log("Result received:", result);
+
+                  if (!response.ok) {
+                     throw new Error(result.error || 'Şifre değiştirme işlemi başarısız oldu.');
+                  }
+                  $('#formhide').hide
+                  alert("Şifre başarıyla değiştirildi!");
+
+               } catch (error) {
+                  console.error('Hata:', error);
+                  alert("Şifre değiştirme işlemi başarısız oldu.");
+               }
+            }
+         </script>
+
+
+
+         <!-- about section end -->
+         <!-- footer section start -->
+         <%- include("partials/_footer") %>
+            <!-- footer section end -->
+            <!-- copyright section start -->
+            <%- include("partials/_copyright") %>
+               <!-- copyright section end -->
+               <!-- Javascript files-->
+               <script src="js/jquery.min.js"></script>
+               <script src="js/popper.min.js"></script>
+               <script src="js/bootstrap.bundle.min.js"></script>
+               <script src="js/jquery-3.0.0.min.js"></script>
+               <script src="js/plugin.js"></script>
+               <!-- sidebar -->
+               <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+               <script src="js/custom.js"></script>
+               <!-- javascript -->
+               <script src="js/owl.carousel.js"></script>
+               <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+               <script>
+                  $(document).ready(function () {
+                     $(".fancybox").fancybox({
+                        openEffect: "none",
+                        closeEffect: "none"
+                     });
+
+                     $(".zoom").hover(function () {
+
+                        $(this).addClass('transition');
+                     }, function () {
+
+                        $(this).removeClass('transition');
+                     });
+                  });
+               </script>
+               <script>
+                  function openNav() {
+                     document.getElementById("myNav").style.width = "100%";
+                  }
+                  function closeNav() {
+                     document.getElementById("myNav").style.width = "0%";
+                  }
+               </script>
+               <script>
+                  const select = document.querySelector('#hastalik');
+                  let kselectedValue = ""
+                  select.onchange = function () {
+
+                     const selectedIndex = select.selectedIndex;
+                     const selectedValue = select.options[selectedIndex].value;
+                     let kategoriValue = ""
+
+
+                     fetch('/disease/' + selectedValue, {
+                        method: 'GET',
+                        headers: {
+                           'Content-Type': 'application/json'
+                        },
+                     })
+                        .then(response => {
+                           // Sunucudan gelen yanıtı kontrol etme
+                           if (!response.ok) {
+                              throw new Error('Network response was not ok');
+                           }
+                           return response.json(); // JSON formatında yanıtı al
+                        })
+                        .then(data => {
+                           console.log('İşlem başarılı:', data);
+                           const div = document.querySelector("#kategoriContainer")
+                           const kategoriselect = document.createElement("select")
+                           div.innerHTML = ""
+                           div.appendChild(kategoriselect)
+                           kategoriselect.id = "kategoriselect"
+                           kategoriselect.innerHTML = '';
+                           kategoriselect.style.display = "block"
+                           kategoriselect.className = "form-control"
+                           kategoriselect.style.width = "350px"
+                           kategoriselect.style.height = "50px"
+                           kategoriselect.style.marginLeft = "20px"
+                           kategoriselect.style.marginTop = "20px"
+
+
+
+                           data.forEach(element => {
+                              const option = document.createElement('option');
+                              // Option öğesinin değerini ve içeriğini belirle
+                              option.value = element._id;
+                              option.textContent = element.diseaseName;
+                              kategoriselect.appendChild(option)
+
+                           });
+                           const akategoriselect = document.querySelector("#kategoriselect")
+                           akategoriselect.onchange = function () {
+                              const kselectedIndex = akategoriselect.selectedIndex;
+                              const kselectedValue = akategoriselect.options[kselectedIndex].value;
+                           }
+                        })
+                        .catch(error => {
+                           console.error('İstek hatası:', error);
+                        });
+
+                  }
+
+                  const sendData = () => {
+                     const select = document.querySelector('#hastalik');
+                     const selectedIndex = select.selectedIndex;
+                     const selectedValue = select.options[selectedIndex].value;
+                     const photo = document.querySelector("#fotograf").v;
+                     const akategoriselect = document.querySelector("#kategoriselect")
+                     const kselectedIndex = akategoriselect.selectedIndex;
+                     const kselectedValue = akategoriselect.options[kselectedIndex].value;
+                     console.log(kselectedValue)
+                     const baslik = document.querySelector('#baslik').value
+                     const posticerik = document.querySelector('#icerik').value
+                     const yazar = document.querySelector('#yazar').value
+
+
+                     fetch('/posts/createPost', {
+                        method: 'POST',
+                        headers: {
+                           'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                           FormData,
+                           diseaseID: kselectedValue,
+                           postName: baslik,
+                           description: posticerik,
+                           author: yazar,
+                        })
+                     })
+                        .then(response => {
+                           // Sunucudan gelen yanıtı kontrol etme
+                           if (!response.ok) {
+                              throw new Error('Network response was not ok');
+                           }
+                           return response.json(); // JSON formatında yanıtı al
+                        })
+                        .then(data => {
+                           console.log('İşlem başarılı:', data);
+                        })
+                        .catch(error => {
+                           console.error('İstek hatası:', error);
+                        });
+
+                  }
+               </script>
    </body>
-</html>
+
+   </html>

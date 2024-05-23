@@ -1,27 +1,34 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import validator from "validator";
 const { Schema } = mongoose;
 
 const userModel = new Schema({
     name:{
         type:String,
         trim:true,
-        required:true
+        required:[true, "İsim girmek zorunludur..."]
     },
     username: {
         type: String,
         trim: true,
         unique: true,
-        required: true,
+        required: [true, "Kullanıcı adı girmek zorunludur..."],
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Şife kısmı boş bırakılamaz..."],
+        minLength:[4, "4 karakterden fazla bir şifre giriniz..."]
     },
     
     k_tarihi: {
         type: Date,
         default: Date.now,
+    },
+    role:{
+        type: String,
+        enum:["member","admin"],
+        default: "member"
     }
 },
 {

@@ -236,7 +236,7 @@ button {
     content: '';
     width: 1230px;
     height: 960px;
-    background-image: linear-gradient( 0deg, #eaeaea 43%, #fff 45%);
+
     left: initial;
     right: 0px;
     top: 0px;
@@ -247,7 +247,6 @@ button {
     position: absolute;
     content: '';
     width: 430px;
-    background-color: rgb(10, 10, 13, 0.80);
     height: 870px;
     left: 0px;
     right: initial;
@@ -256,6 +255,20 @@ button {
 
 .logo {
     float: left;
+    margin-right:auto;
+    margin-bottom:0%;
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.logo a {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.logo a:hover {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 5px red;
 }
 
 .menu_main {
@@ -362,8 +375,7 @@ button {
 }
 
 .design_taital {
-    width: 40%;
-    float: left;
+    width: 20%;
     font-size: 60px;
     color: #ffffff;
     padding-top: 140px;
@@ -377,12 +389,14 @@ button {
     width: 150px;
 }
 
+
 .contact_bt a {
     width: 100%;
     float: left;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #9ccd3c;
+    font-size: 25px;
+    color: #fff;
+    background-color: #0e1b22;
+    text-shadow: 4px 4px  5px red;
     text-align: center;
     padding: 10px 0px;
     text-transform: uppercase;
@@ -390,8 +404,8 @@ button {
 }
 
 .contact_bt a:hover {
-    color: #000;
-    background-color: #ffffff;
+    color: #152832;
+    background-color: rgb(210, 202, 202);
 }
 
 #main_slider a.carousel-control-next {
@@ -410,7 +424,7 @@ button {
 #main_slider .carousel-control-next {
     width: 60px;
     height: 100px;
-    background-color: #9ccd3c;
+    background-color: #152832;
     opacity: 1;
     font-size: 30px;
     color: #ffffff;
@@ -420,8 +434,8 @@ button {
 #main_slider .carousel-control-next:hover,
 #main_slider .carousel-control-prev:focus,
 #main_slider .carousel-control-next:focus {
-    background: #9ccd3c;
-    color: #000;
+    background: #152832;
+    color: #ffffff;
 }
 
 

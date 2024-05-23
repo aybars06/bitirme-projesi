@@ -8,7 +8,113 @@
          <!-- banner section end -->
       <!-- header section end -->
       <!-- barber section start -->
-      <%- include("partials/_post") %>
+      <div class="barber_section layout_padding">
+         <div class="container">
+           <div class="braber_taital_main">
+             <div class="row" >
+               <div class="col -sm 12" style="margin-left: 40%; margin-bottom: 50px;">
+                 <select class="form-control" name="category" id="filtrele" onchange={setSelect}>
+                   <option value="0"  selected>Tüm Gönderiler
+                   </option>
+                   <!-- Kategorileri dinamik olarak ekle -->
+                   <% category.forEach(category=> { %>
+                     <option value="<%= category.id %>" style="margin-top: 10%; margin-left: 50%;">
+                       <%= category.categoriesName %>
+                     </option>
+                     <% }); %>
+                 </select>
+               </div>
+               <%- include("partials/_post") %>
+       <script>
+         const select = document.querySelector('#filtrele');
+         let kselectedValue = ""
+         select.onchange = function () {
+       
+           const selectedIndex = select.selectedIndex;
+           const selectedValue = select.options[selectedIndex].value;
+           let kategoriValue = "";
+           fetch('/posts/getPostByCategory', {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({ categoryID: selectedValue })
+           })
+             .then(response => {
+               // Sunucudan gelen yanıtı kontrol etme
+               if (!response.ok) {
+                 throw new Error('Network response was not ok');
+               }
+               return response.json(); // JSON formatında yanıtı al
+             })
+             .then(data => {
+               console.log(data)
+               const postContainer = document.querySelector("#postContainer")
+               postContainer.innerHTML=""
+               data.posts.forEach(post => {
+                 const div = document.createElement("div")
+                 
+                 div.className="col-lg-6"
+                 postContainer.innerHTML+=`
+                   <div class="col-lg-6">
+                        <div class="barber_bg_main">
+                          <h1 class="barber_taital">
+                            ${post.postName}
+                          </h1>
+                          <p class="barber_text">
+                           ${post.description.substring(0, 80) + "..." }
+                          </p>
+                          <div class="blogr_main">
+                            <div class="blogr_left">
+                              <p class="post_text">Post By : ${post.author}</p>
+                            </div>
+                            <div class="blogr_right">
+                              <div class="comment_text">
+                                <ul>
+                                  <li>
+                                    <a href="#">
+                                     ${post.like}<span class="padding_10"><i class="fa fa-thumbs-up"></i></span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                     ${post.comment}<span class="padding_10"><i class="fa fa-comment"></i></span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="#">
+                                     ${post.dislike}<span class="padding_10"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="fashion_img">
+                          <a href="/posts/<%= post._id %>">
+                            <img src="/images/img-1.png" class="fashion_img" alt="Post Image">
+                            <div class="read_bt">
+                              <a href="#">
+                               ${ new Date(post.postDate).toLocaleDateString('tr-TR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }
+                              </a>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                   `
+                   /* postContainer.appendChild(div) */
+       
+                   
+               });
+       
+             }
+       
+             )
+         }
+       </script>
       <!-- barber section end -->
       <!-- about section start -->
       <%- include("partials/_about") %>

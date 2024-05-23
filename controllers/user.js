@@ -3,30 +3,44 @@ import bcrypt from "bcrypt";
 
 const passwordChanged = async (req, res) => {
   try {
-    const { userId, currentPassword, newPassword } = req.body;
-    if (currentPassword === newPassword) {
-      res.status(475).json({
-        status: "fail",
-        error: "eski şifre ile yeni şifre aynı olamaz...",
-      });
-    } else {
-      const user = await User.findOne({ _id: userId });
-      if (user) {
-        bcrypt.compare(currentPassword, user.password, async (err, same) => {
-          if (same) {
-            user.password = newPassword.toString();
-            await user.save();
-            res.status(200).json({
-              message: "success",
-            });
-          }
+    const {userID, currentPassword, newPassword } = req.body;
+   console.log(currentPassword)
+   console.log(newPassword)
+      if (currentPassword === newPassword) {
+        res.status(475).json({
+          status: "fail",
+          error: "eski şifre ile yeni şifre aynı olamaz...",
         });
+      } else {
+        const user = await User.findOne({ _id: userID });
+        if (user) {
+          bcrypt.compare(currentPassword, user.password, async(err, same) => {
+            console.log("same: ", same)
+            if (same) {
+              user.password = newPassword.toString();
+              await user.save();
+                res.status(200).json({
+                  status: "success",
+                });
+            }
+            else {
+              // bcrypt karşılaştırma hatası
+              return res.status(500).json({
+                status: "fail",
+                error: "Şifre karşılaştırma işlemi sırasında bir hata oluştu.",
+              });
+            }
+          });
+        }
       }
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ msg: "Sunucu hatası." });
+    
+    
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      err,
+    });
   }
-};
+}
 
 export { passwordChanged };
